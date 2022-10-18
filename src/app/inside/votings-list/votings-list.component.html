@@ -1,1 +1,17 @@
-<p>votings-list works!</p>
+<div class="py-10" >
+    <header>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold leading-tight text-gray-900" >My Votings</h1>
+        </div>
+    </header>
+    <main>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+            <div class="px-4 py-8 sm:px-0" >
+                <button (click)="startVoting()" class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white" >Start New Voting</button>
+                <div *ngFor="let voting of votings.data" >
+                    {{voting | json}}
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
