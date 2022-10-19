@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { 
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toaster: ToastrService) { 
     this.form = this.fb.group({
       email: ['olivercv@gmail.com', [Validators.required, Validators.email]],
       password: ['123456', [Validators.required, Validators.minLength(6)]]
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
       // TODO show error list
       console.log(error);
     }else {
-      this.router.navigateByUrl('/app', { replaceUrl: true});
+      this.router.navigateByUrl('/app', { replaceUrl: true})
+      .then(() => this.toaster.success('You signed in'));
     }
   }
   async register() {

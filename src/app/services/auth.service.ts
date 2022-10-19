@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CurrentUser } from '../types/currentUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private supabase: SupabaseClient;
+  //private currentUser: BehaviorSubject<CurrentUser> = new BehaviorSubject<CurrentUser>(null);
   private currentUser: BehaviorSubject<boolean | User | any> = new BehaviorSubject(null);
   constructor() {
     this.supabase = createClient(
